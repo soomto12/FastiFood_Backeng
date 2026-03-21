@@ -1,5 +1,8 @@
+
+// task: i still have to fix the image upload fuctionality
 import express from "express"
 import {ConnectDb} from "./config/db"
+import { FoodRouter } from "./routes/foodRoutes";
 
 const app = express()
 
@@ -9,9 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 ConnectDb()
 
-app.get("/test", (req, res)=>{
- return res.json({message: "api is working"})
-})
+app.use( "/fasti_food",FoodRouter)
+app.use("/images", express.static("uploads"))
 
 
 app.listen(3000, ()=>{
