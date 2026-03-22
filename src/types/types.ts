@@ -7,3 +7,12 @@ price: number
 image?: string
 category: string
 }
+
+export interface UserSchema extends Document {
+    name: string,
+    email: string,
+    password: string,
+    cart:{}
+        
+    
+}

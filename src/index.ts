@@ -3,6 +3,7 @@
 import express from "express"
 import {ConnectDb} from "./config/db"
 import { FoodRouter } from "./routes/foodRoutes";
+import {UserRouter} from "./routes/UserRouter"
 
 const app = express()
 
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 ConnectDb()
-
+app.use("/user", UserRouter)
 app.use( "/fasti_food",FoodRouter)
 app.use("/images", express.static("uploads"))
 

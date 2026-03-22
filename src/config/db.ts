@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const MongoDbURI = process.env.MongoDbURI || ''
+const MongoDbURI = ""
 
 export const ConnectDb = async () => {
   try {
