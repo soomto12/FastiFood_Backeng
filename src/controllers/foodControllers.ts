@@ -11,7 +11,8 @@ import fs from "fs"
  const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
-         res.status(400).json({error : "please enter the correct credentials" , errorMessage: errors.array() })
+     res.status(400).json({error : "please enter the correct credentials" , errorMessage: errors.array() })
+     return
      }
 
 
@@ -34,12 +35,13 @@ const foodData =  new foodmodel({
 await foodData.save()
 
 
- res.json({message: "food added", data: foodData} )
+ return res.json({message: "food added", data: foodData} )
 
-console.log("done")
+
         
     } catch (err) {
-        console.log(err)
+    return   res.status(500).json({error:"server error"})
+       
         
     }
 
@@ -49,11 +51,11 @@ console.log("done")
 
 try {
  const data = await foodmodel.find()
-res.status(200).json({message: "food data", data:data })
+ return res.status(200).json({message: "food data", data:data })
 
     
 } catch (error) {
-    res.status(200).json({message:"server error" , errorMessage: error})
+  return  res.status(500).json({message:"server error" , errorMessage: error})
 }
 
 }
@@ -69,13 +71,12 @@ try {
 
      if (!food) {
         res.status(400).json({errorMessage:"food Id does not exist"})
+        return
     }
 
   
 
-    if(!food){
-res.status(400).json({message: "food does not exist"})
-    }
+   
 
    fs.unlink(`src/uploads/${food.image}`, ()=>{})
 
@@ -83,11 +84,11 @@ res.status(400).json({message: "food does not exist"})
     await  foodmodel.findByIdAndDelete(foodId)
 
 
-res.status(200).json({message:"item deleted succesfully", succes: true })
+ return res.status(200).json({message:"item deleted succesfully", succes: true })
     
 } catch (error) {
-    res.status(500).json({message: "server error", errorMessage: error})
-    console.log(error)
+  return  res.status(500).json({message: "server error", errorMessage: error})
+   
 }
    
  
@@ -102,13 +103,14 @@ res.status(200).json({message:"item deleted succesfully", succes: true })
 
     if (!food) {
         res.status(400).json({message:"the food does not exist"})
+        return
         
     }
 
-    res.status(200).json({sucess: true, data : food})
+   return res.status(200).json({sucess: true, data : food})
     } catch (error) {
-        res.json({message:"sever error", errorMessage: error})
-        console.log(error)
+    return    res.json({message:"sever error", errorMessage: error})
+        
     }
 
     

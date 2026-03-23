@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const MongoDbURI = ""
+const MongoDbURI = "mongodb+srv://edokasomtochukwu_db_user:blockchain@cluster0.mpjhlae.mongodb.net/?appName=fastiFood"
 
 export const ConnectDb = async () => {
   try {
