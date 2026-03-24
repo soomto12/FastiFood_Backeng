@@ -1,4 +1,4 @@
-// todo: i need to complete the validation for the food
+
 
 import { Router } from "express";
 import { CreateFood, GetFood, GetOneFood } from "../controllers/foodControllers";
@@ -19,8 +19,10 @@ const upload = multer({storage})
 FoodRouter.post("/delete", DeleteFood)
 FoodRouter.post("/add", 
     body("name").isString().notEmpty().withMessage("the food name should not be empty").isLength({max:20 , min:2}).withMessage("the food name should be a least 3 character long")
-    
-    ,  upload.single("image"), CreateFood)
+    ,body("price").isNumeric().notEmpty(),
+    body("description").notEmpty().trim().isLength({min:3, max:30}).withMessage("must be at least 4 character long"),
+    body("category").isLength({min:3, max:30}).isString().trim().notEmpty(),
+    upload.single("image"), CreateFood)
 FoodRouter.get("/get", GetFood  )
 FoodRouter.get("/get/:id", GetOneFood)
 

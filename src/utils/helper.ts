@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 
 dotenv.config()
-const jwt_secret =  "myFasiti_foodSercretToke_blockchain"
+const jwt_secret =  ""
 
 
 

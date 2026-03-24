@@ -13,3 +13,10 @@ cart: {type:Object, default:{}}
 const userModel = mongoose.models.users || mongoose.model("users", userSchema)
 
 export default userModel
+
+// how the cart will look like
+
+ //  cart : {
+ // 585855757585858:1 
+//
+// }

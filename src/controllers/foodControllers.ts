@@ -11,14 +11,15 @@ import fs from "fs"
  const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
-     res.status(400).json({error : "please enter the correct credentials" , errorMessage: errors.array() })
-     return
+  res.status(400).json({error : "please enter the correct credentials" , errorMessage: errors.array() })
+  return
+    
      }
 
-
+ let Image_name = req.file?.filename
     const {name, description, price,  category} = req.body
 
-   let Image_name = req.file?.filename
+  
 
 
 

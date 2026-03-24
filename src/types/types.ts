@@ -16,3 +16,14 @@ export interface UserSchema extends Document {
         
     
 }
+
+
+export interface OrderI  {
+    name: string,
+    item: string,
+    amount:number,
+    address : {},
+    status:string,
+    date: Date
+
+}
